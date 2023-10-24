@@ -1,0 +1,92 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "height": 400,
+  "width": "container",
+  "title": "Median Housing Price Growth per Year (%) in Top 5 Expensive States",
+  "layer": [
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/letriet/FIT3179_ASGN2/main/asgn2.csv"
+      },
+      "transform": [
+        {
+          "filter": "datum.state =='New York' || datum.state == 'California' || datum.state == 'Hawaii' || datum.state == 'Washington' || datum.state == 'Massachusetts'"
+        }
+      ],
+      "mark": "bar",
+      "encoding": {
+        "y": {
+          "field": "state",
+          "type": "nominal",
+          "axis": {
+            "domain": false,
+            "ticks": false,
+            "labelAngle": 0,
+            "labelPadding": 4
+          },
+          "sort": {"field": " medianHomePrice "},
+          "title": "State"
+        },
+        "x": {
+          "field": "medianHomePriceYearOnYearGrowth",
+          "type": "quantitative",
+          "title": "Median Housing Price Growth per Year (%)"
+        },
+        "color": {
+          "field": "state",
+          "type": "nominal",
+          "legend": null,
+          "scale": {"scheme": "category20"}
+        },
+        "tooltip": [
+          {
+            "field": " medianHomePrice ",
+            "type": "quantitative",
+            "title": "Median House Price ($USD)"
+          },
+          {
+            "field": "medianHomePriceYearOnYearGrowth",
+            "type": "quantitative",
+            "title": "Median Housing Price Growth per Year (%)"
+          }
+        ]
+      }
+    },
+    {
+      "data": {"values": [{}]},
+      "mark": {"type": "rule", "size": 2, "strokeDash": [2, 2]},
+      "encoding": {"x": {"datum": -5.8}, "color": {"value": "black"}}
+    },
+    {
+      "data": {"values": [{}]},
+      "mark": {"type": "text", "align": "left", "baseline": "top", "dx": 15},
+      "encoding": {
+        "x": {"datum": -5.8},
+        "text": {
+          "value": [
+            "California is depreciating the most",
+            "at a median rate of",
+            "-5.8% per Year"
+          ]
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFont": "Helvetica",
+      "titleFont": "Helvetica",
+      "titleFontSize": 10,
+      "titleAnchor": "middle"
+    },
+    "legend": {"labelFont": "Helvetica", "titleFont": "Helvetica"},
+    "header": {"labelFont": "Helvetica", "titleFont": "Helvetica"},
+    "mark": {"font": "Helvetica"},
+    "title": {
+      "font": "Helvetica",
+      "subtitleFont": "Helvetica",
+      "fontSize": 12.5
+    }
+  },
+  "background": "#F3E8E2"
+}
