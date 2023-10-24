@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": "container",
-  "height": 300,
+  "height": 400,
   "title": "Average GDP Per Capita and their Relative Purchasing Power (RPP)",
   "data": {
     "url": "https://raw.githubusercontent.com/letriet/FIT3179_ASGN2/main/asgn2.csv"
