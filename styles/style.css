@@ -1,0 +1,72 @@
+.container-fluid {
+    width: 57%; /* Adjust this value to set the container width as a percentage of the screen */
+    max-width: none; /* Remove the maximum width constraint */
+    background-color: #F3E8E2;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    font-family: Helvetica, sans-serif;
+  }
+body{
+    background-image:url("../img/backgroundv2.jpg");
+    background-size: cover;
+}
+
+
+.large_text{
+    font-size: 50px;
+}
+
+.subheading{
+    padding-top: 10px;
+    padding-bottom: 10;
+}
+
+.subheadingend{
+    padding-top: 10px;
+    padding-bottom: 10;
+    text-align: right;
+}
+
+p{
+    font-weight: 300;
+    justify-content: center;
+    text-align: center;
+
+}
+
+#vis1,#vis2,#vis3,#vis4,#vis5,#vis6,#vis7{
+    width: 100%;
+    justify-content: center;
+    padding-left: 1%;
+}
+
+.color-text{
+    background-color: #E7D2C5;
+    padding: 5px;
+    background-size:auto;
+    justify-content:center;
+    background-position: center-center;
+}
+strong{
+    font-weight: bold;
+}
+
+footer{
+    padding: auto;
+    text-align: right;
+}
+
+high {
+    color: #1b9e77;
+    font-weight: bold;
+}
+
+moderate {
+    color: #7570b3;
+    font-weight: bold;
+}
+
+low {
+    color: #d95f02;
+    font-weight: bold;
+}
