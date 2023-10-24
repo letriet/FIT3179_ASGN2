@@ -23,7 +23,7 @@
       }
     },
     {
-      "calculate": "datum.medianHomePrice || datum.medianHomePrice+0.1",
+      "calculate": "datum.medianHomePrice",
       "as": "Average Housing Price ($USD)"
     }
   ],
