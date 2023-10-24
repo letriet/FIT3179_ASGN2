@@ -1,0 +1,90 @@
+{
+  "title": "Average Mortgage and Interest Rate from 2000 to 2022",
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container",
+  "height": 450,
+  "layer": [
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/letriet/FIT3179_ASGN2/main/asgn2_extra.csv"
+      },
+      "transform": [
+        {
+          "calculate": "{'MRT': 'Mortgage', 'INTR': 'Interest'}[datum.symbol]",
+          "as": "Symbol"
+        }
+      ],
+      "mark": {"type": "line", "point": true},
+      "encoding": {
+        "x": {"field": "date", "type": "temporal", "title": "Year"},
+        "y": {
+          "field": "rate",
+          "type": "quantitative",
+          "title": "Rate per Annum (%)"
+        },
+        "color": {
+          "field": "Symbol",
+          "type": "nominal",
+          "scale": {"domain": ["Mortgage", "Interest"], "scheme": "set1"},
+          "title": "Rate (%)"
+        },
+        "tooltip": [
+          {
+            "field": "date",
+            "type": "temporal",
+            "title": "Year",
+            "format": "%Y"
+          },
+          {
+            "field": "rate",
+            "type": "quantitative",
+            "title": "Rates (%)",
+            "format": ".1f"
+          }
+        ]
+      }
+    },
+    {
+      "data": {"values": [{}]},
+      "mark": {"type": "rule", "size": 2, "strokeDash": [2, 2]},
+      "encoding": {"x": {"datum": {"year": 2008}}, "color": {"value": "black"}}
+    },
+    {
+      "data": {"values": [{}]},
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "top",
+        "dx": 40,
+        "xOffset": -30,
+        "yOffset": -100
+      },
+      "encoding": {
+        "x": {"datum": {"year": 2008}},
+        "text": {"value": ["Great", " Recession ", "(2008)"]}
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFont": "Helvetica",
+      "titleFont": "Helvetica",
+      "titleFontSize": 12.5,
+      "titleAnchor": "middle"
+    },
+    "legend": {
+      "labelFont": "Helvetica",
+      "titleFont": "Helvetica",
+      "labelFontSize": 12.5
+    },
+    "header": {"labelFont": "Helvetica", "titleFont": "Helvetica"},
+    "mark": {"font": "Helvetica"},
+    "title": {
+      "font": "Helvetica",
+      "subtitleFont": "Helvetica",
+      "anchor": "start",
+      "fontSize": 20
+    },
+    "background": "#F3E8E2"
+  }
+}
