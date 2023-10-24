@@ -1,0 +1,96 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container",
+  "height": 400,
+  "title": "Average GDP Per Capita and their Relative Purchasing Power (RPP)",
+  "data": {
+    "url": "https://raw.githubusercontent.com/letriet/FIT3179_ASGN2/main/asgn2.csv"
+  },
+  "params": [
+    {"name": "paintbrush", "select": "point"},
+    {
+      "name": "pop_category",
+      "bind": {
+        "input": "select",
+        "options": [null, "High", "Moderate", "Low"],
+        "labels": [
+          "Show All",
+          "Highly Populated",
+          "Moderately Populated",
+          "Lowly Populated"
+        ],
+        "name": "Population Category Filter"
+      }
+    }
+  ],
+  "transform": [
+    {"filter": "pop_category == null || datum.population_class == pop_category"}
+  ],
+  "mark": "circle",
+  "encoding": {
+    "x": {
+      "field": " gdp_per_capita ",
+      "title": "GDP Per Capita",
+      "type": "quantitative",
+      "scale": {"zero": false}
+    },
+    "y": {
+      "field": "value_of_100",
+      "title": "RPP of $100 USD",
+      "type": "quantitative",
+      "scale": {"zero": false}
+    },
+    "tooltip": [
+      {"field": "state", "type": "ordinal", "title": "State"},
+      {
+        "field": " population_states ",
+        "type": "nominal",
+        "title": "Total Population"
+      },
+      {
+        "field": "value_of_100",
+        "type": "nominal",
+        "title": "RPP",
+        "format": "$.2f"
+      },
+      {
+        "field": " gdp_per_capita ",
+        "type": "nominal",
+        "title": "GDP per Capita",
+        "format": "$.1s"
+      }
+    ],
+    "color": {
+      "condition": {
+        "param": "paintbrush",
+        "field": "population_class",
+        "scale": {"scheme": "dark2"},
+        "title": "Population Category"
+      },
+      "value": "grey"
+    },
+    "size": {"value": 300}
+  },
+  "config": {
+    "axis": {
+      "labelFont": "Helvetica",
+      "titleFont": "Helvetica",
+      "titleFontSize": 10,
+      "titleAnchor": "middle"
+    },
+    "legend": {
+      "labelFont": "Helvetica",
+      "titleFont": "Helvetica",
+      "labelFontSize": 10
+    },
+    "header": {"labelFont": "Helvetica", "titleFont": "Helvetica"},
+    "mark": {"font": "Helvetica"},
+    "title": {
+      "font": "Helvetica",
+      "subtitleFont": "Helvetica",
+      "anchor": "end",
+      "fontSize": 12.5
+    },
+    "background": "#F3E8E2"
+  }
+}
