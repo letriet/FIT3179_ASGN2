@@ -2,7 +2,7 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": "container",
   "height": 400,
-  "title": "Urbanization & Relative Purchasing Power (RPP) & GDP per Capita on Housing Prices",
+  "title": "Urbanization & Relative Purchasing Power(RPP) & GDP per Capita on Housing Prices",
   "data": {
     "url": "https://raw.githubusercontent.com/letriet/FIT3179_ASGN2/main/asgn2.csv"
   },
