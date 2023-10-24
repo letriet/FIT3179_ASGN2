@@ -122,8 +122,9 @@
     "title": {
       "font": "Helvetica",
       "subtitleFont": "Helvetica",
-      "anchor": "middle",
+      "anchor": "start",
       "fontSize": 20
-    }
+    },
+    "background": "aliceblue"
   }
 }
