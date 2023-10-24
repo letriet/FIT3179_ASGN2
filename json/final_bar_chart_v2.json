@@ -2,7 +2,7 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "height": 400,
   "width": "container",
-  "title": "Median Housing Price Growth per Year (%) in Top 5 Expensive States",
+  "title": "Median Housing Price Growth per Year (%) in Top 5 Most Expensive States",
   "layer": [
     {
       "data": {
