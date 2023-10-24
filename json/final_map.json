@@ -1,0 +1,64 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Median Housing Price In Different States",
+  "width": "container",
+  "height": 600,
+  "projection": {"type": "albersUsa"},
+  "data": {
+    "url": "https://raw.githubusercontent.com/letriet/FIT3179_Week9/main/ne_110m_admin_1_states_provinces.json",
+    "format": {
+      "type": "topojson",
+      "feature": "ne_110m_admin_1_states_provinces"
+    }
+  },
+  "transform": [
+    {
+      "lookup": "properties.name",
+      "from": {
+        "data": {
+          "url": "https://raw.githubusercontent.com/letriet/FIT3179_Week9/main/2023_MedianHousePrices.csv"
+        },
+        "key": "state",
+        "fields": ["medianHomePrice"]
+      }
+    },
+    {"calculate": "datum.medianHomePrice", "as": "Median Housing Price ($USD)"}
+  ],
+  "mark": {"type": "geoshape", "stroke": "gray"},
+  "encoding": {
+    "color": {
+      "field": "Median Housing Price ($USD)",
+      "type": "quantitative",
+      "title": "Median Housing Price ($USD)"
+    },
+    "tooltip": [
+      {"field": "properties.name", "type": "nominal", "title": "State"},
+      {
+        "field": "Median Housing Price ($USD)",
+        "type": "quantitative",
+        "format": "$"
+      }
+    ]
+  },
+  "config": {
+    "axis": {
+      "labelFont": "Helvetica",
+      "titleFont": "Helvetica",
+      "titleAnchor": "middle"
+    },
+    "legend": {
+      "labelFont": "Helvetica",
+      "titleFont": "Helvetica",
+      "labelFontSize": 10
+    },
+    "header": {"labelFont": "Helvetica", "titleFont": "Helvetica"},
+    "mark": {"font": "Helvetica"},
+    "title": {
+      "font": "Helvetica",
+      "subtitleFont": "Helvetica",
+      "anchor": "start",
+      "fontSize": 20
+    },
+    "background": "#F3E8E2"
+  }
+}
