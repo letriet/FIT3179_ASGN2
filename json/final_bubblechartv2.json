@@ -1,0 +1,135 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container",
+  "height": 600,
+  "title": "Different States and Local Factors on Housing Prices",
+  "data": {
+    "url": "https://raw.githubusercontent.com/letriet/FIT3179_ASGN2/main/asgn2.csv"
+  },
+  "encoding": {
+    "x": {
+      "field": "population_density",
+      "type": "quantitative",
+      "title": "Population Per Square Mile"
+    },
+    "y": {
+      "field": "urbanization_index",
+      "type": "quantitative",
+      "title": "Urbanization Index",
+      "scale": {"zero": false}
+    }
+  },
+  "layer": [
+    {
+      "params": [
+        {
+          "name": "pts",
+          "select": {"type": "point", "fields": ["industries"], "toggle": false}
+        },
+        {
+          "name": "industry_legend",
+          "select": {"type": "point", "fields": ["industries"]},
+          "bind": "legend"
+        }
+      ],
+      "mark": "circle",
+      "encoding": {
+        "size": {
+          "field": "crime_rate",
+          "type": "quantitative",
+          "title": "Crime Rate per 100k",
+          "scale": {
+            "type": "threshold",
+            "domain": [150, 300, 600],
+            "range": [100, 200, 400, 600]
+          },
+          "legend": {"format": ".2s"}
+        },
+        "color": {
+          "condition": {
+            "param": "pts",
+            "field": "industries",
+            "title": "Popular Industries",
+            "type": "nominal"
+          },
+          "value": "grey"
+        },
+        "opacity": {
+          "condition": {"param": "industry_legend", "value": 0.8},
+          "value": 0.2
+        },
+        "tooltip": [
+          {"field": "state", "type": "ordinal", "title": "State"},
+          {
+            "field": " medianHomePrice ",
+            "type": "quantitative",
+            "title": "Average Housing Price ($USD)"
+          },
+          {
+            "field": "crime_rate",
+            "type": "quantitative",
+            "title": "Crime Rate per 100k"
+          },
+          {
+            "field": "industries",
+            "type": "ordinal",
+            "title": "State Renowned Industry"
+          },
+          {
+            "field": "urbanization_index",
+            "type": "quantitative",
+            "title": "Urbanization Index"
+          },
+          {
+            "field": "population_density",
+            "type": "quantitative",
+            "title": "Population Per Square Mile"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "baseline": "line-bottom",
+        "dx": -15,
+        "fontSize": 11.5,
+        "fontStyle": "italic"
+      },
+      "encoding": {
+        "text": {"field": "state", "type": "nominal"},
+        "color": {"value": "black"},
+        "opacity": {
+          "condition": {
+            "test": "datum['state'] == 'California' || datum['state'] == 'New York' ||datum['state'] == 'New Jersey'",
+            "value": 1
+          },
+          "value": 0
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFont": "Helvetica",
+      "titleFont": "Helvetica",
+      "titleFontSize": 12.5,
+      "titleAnchor": "middle"
+    },
+    "legend": {
+      "labelFont": "Helvetica",
+      "titleFont": "Helvetica",
+      "labelFontSize": 12.5
+    },
+    "header": {"labelFont": "Helvetica", "titleFont": "Helvetica"},
+    "mark": {"font": "Helvetica"},
+    "title": {
+      "font": "Helvetica",
+      "subtitleFont": "Helvetica",
+      "anchor": "start",
+      "fontSize": 20
+    },
+    "background": "#F3E8E2"
+  }
+}
