@@ -1,0 +1,94 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container",
+  "height": 300,
+  "title": "Price of Land Lot in the Top 5 Most Expensive States for Housing",
+  "layer": [
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/letriet/FIT3179_ASGN2/main/asgn2.csv"
+      },
+      "transform": [
+        {
+          "filter": "datum.state =='New York' || datum.state == 'California' || datum.state == 'Hawaii' || datum.state == 'Washington' || datum.state == 'Massachusetts'"
+        }
+      ],
+      "mark": "bar",
+      "encoding": {
+        "x": {
+          "field": "state",
+          "type": "nominal",
+          "sort": {"field": " medianHomePrice "},
+          "title": "State"
+        },
+        "y": {
+          "field": "land_price",
+          "type": "quantitative",
+          "title": "Price of Land per sq.ft ($USD)"
+        },
+        "color": {
+          "field": "state",
+          "type": "nominal",
+          "legend": null,
+          "scale": {"scheme": "category10"}
+        },
+        "tooltip": [
+          {
+            "field": " medianHomePrice ",
+            "type": "quantitative",
+            "title": "Median House Price ($USD)",
+            "format": "$"
+          },
+          {
+            "field": "land_price",
+            "type": "quantitative",
+            "title": "Price of Land Per Square Foot ($USD)",
+            "format": "$"
+          }
+        ]
+      }
+    },
+    {
+      "data": {"values": [{}]},
+      "mark": {"type": "rule", "size": 2, "strokeDash": [2, 2]},
+      "encoding": {"y": {"datum": 110.86}, "color": {"value": "black"}}
+    },
+    {
+      "data": {"values": [{}]},
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "bottom",
+        "dx": 50,
+        "dy": -1.5
+      },
+      "encoding": {
+        "y": {"datum": 110.86},
+        "text": {
+          "value": [
+            "Hawaii is most expensive",
+            "price for a lot of land in USA",
+            "($110.86 per sq.ft)"
+          ]
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFont": "Helvetica",
+      "titleFont": "Helvetica",
+      "titleFontSize": 10,
+      "titleAnchor": "middle"
+    },
+    "legend": {"labelFont": "Helvetica", "titleFont": "Helvetica"},
+    "header": {"labelFont": "Helvetica", "titleFont": "Helvetica"},
+    "mark": {"font": "Helvetica"},
+    "title": {
+      "font": "Helvetica",
+      "subtitleFont": "Helvetica",
+      "fontSize": 12.5
+    }
+  },
+  "background": "#FFF2E4"
+}
